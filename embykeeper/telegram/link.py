@@ -225,6 +225,7 @@ class Link:
                 message.continue_propagation()
 
     async def auth(self, service: str, log_func=None):
+        return True
         """向机器人发送授权请求."""
         async with authed_services_lock:
             user_auth_cache = authed_services.get(self.client.me.id, {}).get(service, None)

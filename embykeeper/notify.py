@@ -105,6 +105,8 @@ async def start_notifier():
             change_handle_notifier = config.on_change("notifier", _handle_config_change)
         return stream_log, stream_msg
 
+    return None # disable telegram notifier, because we removed checkiner auth
+
     # Default to telegram
     accounts = config.telegram.account
     account = None
