@@ -134,7 +134,7 @@ class EmbyAccount(ConfigModel):
     allow_multiple: Optional[bool] = True
     allow_stream: Optional[bool] = False
     cf_challenge: Optional[bool] = True
-    use_proxy: Optional[bool] = True
+    use_proxy: Optional[bool] = False
     play_id: Optional[str] = None
     enabled: Optional[bool] = True
 
@@ -164,7 +164,7 @@ class SubsonicAccount(ConfigModel):
     useragent: Optional[str] = None
     client: Optional[str] = None
     client_version: Optional[str] = None
-    use_proxy: Optional[bool] = True
+    use_proxy: Optional[bool] = False
     enabled: Optional[bool] = True
 
     # 站点单独配置
@@ -220,7 +220,7 @@ class TelegramAccount(ConfigModel):
 
 class TelegramConfig(ConfigModel):
     account: Optional[List[TelegramAccount]] = []
-    use_proxy: Optional[bool] = True
+    use_proxy: Optional[bool] = False
 
 
 class BotConfig(ConfigModel):
