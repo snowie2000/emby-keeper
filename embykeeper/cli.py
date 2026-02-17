@@ -484,6 +484,7 @@ async def main(
         return await debug_notifier()
 
     try:
+        streams = None
         checkin_man = None
         if checkiner:
             from .telegram.checkin_main import CheckinerManager
