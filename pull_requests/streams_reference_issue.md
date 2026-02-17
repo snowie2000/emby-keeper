@@ -1,0 +1,1 @@
+This pull request resolves the issue regarding 'streams' being referenced before its definition.
