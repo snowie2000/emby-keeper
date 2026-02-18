@@ -124,7 +124,7 @@ class CheckinerManager:
         phone_masked = TelegramAccount.get_phone_masked(account.phone)
 
         def on_next_time(t: datetime):
-            logger.info(
+            logger.bind(log=True).info(
                 f"下一次 \"{phone_masked}\" 账号 {site_name} 站点的签到将在 {t.strftime('%m-%d %H:%M %p')} 进行."
             )
             date_ctx = RunContext.get_or_create(f"checkiner.date.{t.strftime('%Y%m%d')}")
@@ -165,7 +165,9 @@ class CheckinerManager:
 
         def on_next_time(t: datetime):
             phone_masked = TelegramAccount.get_phone_masked(account.phone)
-            logger.info(f"下一次 \"{phone_masked}\" 账号的签到将在 {t.strftime('%m-%d %H:%M %p')} 进行.")
+            logger.bind(log=True).info(
+                f"下一次 \"{phone_masked}\" 账号的签到将在 {t.strftime('%m-%d %H:%M %p')} 进行."
+            )
             date_ctx = RunContext.get_or_create(f"checkiner.date.{t.strftime('%Y%m%d')}")
             account_ctx = RunContext.get_or_create(f"checkiner.account.{account.phone}")
             return RunContext.prepare(
@@ -379,9 +381,9 @@ class CheckinerManager:
 
         if failed:
             msg = "签到部分失败" if successful else "签到失败"
-            log.bind(log=True).error(f"{msg} ({spec}): {', '.join(failed)}")
+            log.bind(nonotify=True).error(f"{msg} ({spec}): {', '.join(failed)}")
         else:
-            log.bind(log=True).info(f"签到成功 ({spec}).")
+            log.info(f"签到成功 ({spec}).")
 
     def new_ctx(self):
         now = datetime.now()
