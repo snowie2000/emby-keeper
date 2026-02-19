@@ -340,13 +340,13 @@ class ClientsSession:
                             logger.warning(
                                 "非可交互终端, 无法输入验证码, 如果您使用 docker 请使用 docker -it 运行, 否则请使用可交互终端."
                             )
-                            logger.error(f'登录账号 "{phone_masked}" 时发生异常, 将被跳过.')
+                            logger.bind(log=True).error(f'登录账号 "{phone_masked}" 时发生异常, 将被跳过.')
                             return None
                         if session_str:
                             logger.info("请耐心等待, 正在登陆.")
                             await asyncio.sleep(5)
                         else:
-                            logger.warning(f'登录账号 "{phone_masked}" 尝试次数超限, 将被跳过.')
+                            logger.bind(log=True).warning(f'登录账号 "{phone_masked}" 尝试次数超限, 将被跳过.')
                             return None
 
                 client_params = {
