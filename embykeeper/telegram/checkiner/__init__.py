@@ -5,11 +5,13 @@ if _t.TYPE_CHECKING:
     from ._base import BaseBotCheckin, BotCheckin, AnswerBotCheckin, MessageType
     from ._templ_a import TemplateACheckin
     from ._templ_b import TemplateBCheckin, TemplateBCheckinConfig
+    from ._templ_d import TemplateDCheckin, TemplateDCheckinConfig
 
 MENU = {
     "._base": ["BaseBotCheckin", "BotCheckin", "AnswerBotCheckin", "MessageType"],
     "._templ_a": ["TemplateACheckin"],
     "._templ_b": ["TemplateBCheckin", "TemplateBCheckinConfig"],
+    "._templ_d": ["TemplateDCheckin", "TemplateDCheckinConfig"],
 }
 
 
