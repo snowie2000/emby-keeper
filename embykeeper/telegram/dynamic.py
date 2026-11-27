@@ -116,10 +116,11 @@ def get_cls(type: str, names: List[str] = None) -> List[Type]:
                     results.append(
                         func(bot_username=match.group(2), name=f"@{match.group(2)}", templ_name=name)
                     )
-            except ImportError:
-                all_names = get_names(type, allow_ignore=True)
-                logger.warning(f'您配置的 "{type}" 不支持站点 "{name}", 请从以下站点中选择:')
-                logger.warning(", ".join(all_names))
+            except ImportError as e:
+                module_name = f"{__telechecker__}.{sub}._templ_{match.group(1).lower()}"
+                logger.warning(
+                    f'您配置的 "{type}" 无法加载模板站点 "{name}" (模块: "{module_name}", 原因: {e}).'
+                )
         else:
             module_path = f"{__telechecker__}.{sub}.{name.lower()}"
             try:

@@ -2,6 +2,7 @@ from fractions import Fraction
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
+from embykeeper.telegram.dynamic import get_cls
 from embykeeper.telegram.checkiner._templ_d import find_answer_button, solve_math_expression
 
 
@@ -40,3 +41,11 @@ def test_requires_an_exact_numeric_answer_button():
 def test_rejects_non_challenge_text_and_division_by_zero():
     assert solve_math_expression("balance: 3 - 3") is None
     assert solve_math_expression("3 / 0 = ?") is None
+
+
+def test_dynamic_loader_recognizes_template_d():
+    classes = get_cls("checkiner", names=["templ_d<zzmeb_bot>"])
+
+    assert len(classes) == 1
+    assert classes[0].bot_username == "zzmeb_bot"
+    assert classes[0].templ_name == "templ_d<zzmeb_bot>"
